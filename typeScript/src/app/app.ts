@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlmaComponent } from './alma/alma.component';
 
 @Component({
@@ -8,5 +8,9 @@ import { AlmaComponent } from './alma/alma.component';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('typeScript');
+  st = "Ez lesz majd a felirat"
+
+  titleClick(text:string){
+    this.st = text;
+  }
 }
