@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-termek',
@@ -7,16 +7,23 @@ import { Component, Input} from '@angular/core';
   styleUrl: './termek.component.scss',
 })
 export class TermekComponent {
-  db = 0;
-
+  
   @Input() maxDB = 0;
   @Input() name = "";
+  @Input() db = 0;
+
+  @Output() kesz = new EventEmitter<{ nev:string, db:number }>();
 
   novel(){
-    if (this.db < this.maxDB) this.db++;
+    if (this.db < this.maxDB){
+      this.db++;
+      let info = { nev : this.name, db : this.db };
+      this.kesz.emit(info);
+    } 
 
-    if (this.maxDB === this.db) {
-      alert(`Kész! Az összes ${this.name} megvéve.`);
-    }
+    // if (this.maxDB === this.db) {
+    //   this.kesz.emit(this.name);
+    //   // alert(`Kész! Az összes ${this.name} megvéve.`);
+    // }
   }
 }

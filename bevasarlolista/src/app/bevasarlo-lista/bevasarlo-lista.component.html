@@ -2,5 +2,13 @@
 
 <hr>
 
-<app-termek [maxDB]="6" name="Alma"/>
-<app-termek [maxDB]="5" name="Körte"/>
+<!-- <app-termek [maxDB]="6" name="Alma"/>
+<app-termek [maxDB]="5" name="Körte"/> -->
+
+@for (item of tetelek; track $index) {
+    <app-termek [maxDB]="item.maxDB" [name]="item.nev" [db]="item.db" (kesz)="kesz($event)"/>
+    @if (item.maxDB == item.db) {
+        Kész <br>
+    }
+    <hr>
+}
