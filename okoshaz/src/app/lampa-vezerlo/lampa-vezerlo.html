@@ -1,0 +1,5 @@
+<p>Jelenlegiek: {{sum}}</p>
+
+@for (szoba of szobak; track $index) {
+    <app-lampa [nev]="szoba.nev" [allapot]="szoba.allapot" (kapcsolas)="tortenes($event)"/>
+}

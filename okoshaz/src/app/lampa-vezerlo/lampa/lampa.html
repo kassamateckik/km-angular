@@ -1,0 +1,23 @@
+@if (allapot) {
+    <div id="aktiv">
+        <h1>{{nev}}</h1>
+    
+    <input type="button" value="On/Off" (click)="kapcsol()">
+    
+    @if (fenyero >= 90) {
+        <p id="figyelmeztetes">Figyelem: Maximális fogyasztás!</p>
+    }
+
+    <p>Fényerő: {{fenyero}}</p>
+    <input type="range" min="0" max="100" [(ngModel)]="fenyero">
+</div>
+}
+@else{
+    <div id="inaktiv">
+    <h1>{{nev}}</h1>
+    
+    <input type="button" value="On/Off" (click)="kapcsol()">
+    
+    <p>A lámpa le van kapcsolva</p>
+</div>
+}
