@@ -1,4 +1,4 @@
 <p>Időzóna: {{timezone}}</p>
 <p>Idő: {{time}}</p>
 <input type="button" value="Frissítés" (click)="update()">
-<input type="button" value="Jelenleginek jelöl" (click)="mark()">
+<input type="button" value="Jelenleginek jelöl" (click)="mark()" [disabled]="isLocal">

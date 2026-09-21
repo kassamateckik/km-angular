@@ -11,17 +11,19 @@ export class ZonazoComponent {
 
   timezones = [
     {
-      name : "Erope/Budapest",
+      name : "Europe/Budapest",
       isLocal : false
     },
     {
       name : "America/New_York",
       isLocal : false
     }
-  ]
+  ];
 
-  demark(tz:string){
-
+  demark(tz:any){
+    console.log(tz);
+    for (const zone of this.timezones) {
+      zone.isLocal = zone.name === tz;
+    }
   }
-
 }
