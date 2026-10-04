@@ -1,11 +1,13 @@
 @if (hianyzik) {
     <div class="hianyzo">
+        <p><b>{{nev}}</b></p>
         <p>Igazolatlan hiányzás.</p>
         <input type="button" value="Hiányzás Módosítása" (click)="modosit()">
     </div>
 }
 @else{
-    <div >
+    <div>
+        <p><b>{{nev}}</b></p>
         <input type="number" [(ngModel)]="ujJegy" min="1" max="5" >
         <input type="button" value="Jegy beírása" (click)="hozzaad()" >
         <input type="button" value="Hiányzás Módosítása" (click)="modosit()">

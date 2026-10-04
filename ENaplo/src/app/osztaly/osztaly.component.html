@@ -1,1 +1,11 @@
-<app-tanulo nev="Sanyi" [hianyzik]="true" [jegyek]="[1, 5, 2, 4, 3]"/>
+<!-- <app-tanulo nev="Sanyi" [hianyzik]="true" [jegyek]="[1, 5, 2, 4, 3]"/> -->
+<h1>{{nev}}, Osztályfőnök: {{osztalyfonok}}</h1>
+<h2>Osztályátlag: {{osztalyAtlag}}</h2>
+<ul>
+    @for (t of tanulok; track $index) {
+        <li>
+            <app-tanulo [nev]="t.nev" [hianyzik]="t.hianyzik" [jegyek]="t.jegyek" (jegyBeirva)="jegyBeiras($event)" (hianyzasValtozott)="hianyzasValtozott($event)"/>
+        </li>
+    }
+</ul>
+<hr>

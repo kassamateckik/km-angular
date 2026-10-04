@@ -1,1 +1,4 @@
-<app-osztaly/>
+<p>Iskolai szintű hiányzók száma: {{osszesHianyzok}}</p>
+
+<app-osztaly nev="10.A" osztalyfonok="Kiss Lajos" [tanulok]="tanulok[0]" (hianyzas)="megszamolHianyzok()"/>
+<app-osztaly nev="12.C" osztalyfonok="Trombitás József" [tanulok]="tanulok[1]" (hianyzas)="megszamolHianyzok()"/>

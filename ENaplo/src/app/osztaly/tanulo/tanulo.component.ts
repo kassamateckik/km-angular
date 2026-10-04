@@ -12,21 +12,22 @@ export class TanuloComponent {
   @Input() jegyek:number[] = [];
   @Input() hianyzik:boolean = false;
 
-  @Output() jegyBeirva = new EventEmitter<number>();
+  @Output() jegyBeirva = new EventEmitter();
   @Output() hianyzasValtozott = new EventEmitter();
 
-  ujJegy:number = 0;
+  ujJegy:number = 3;
   atlag:number = this.kellAtlag();
 
   hozzaad(){
-    this.jegyek.push(this.ujJegy);
+    this.jegyBeirva.emit({
+      tanuloNev: this.nev, 
+      tanuloJegy: this.ujJegy
+    });
     this.atlag = this.kellAtlag();
-    this.jegyBeirva.emit(this.ujJegy);
   }
 
   modosit(){
-    this.hianyzik = !this.hianyzik;
-    this.hianyzasValtozott.emit();
+    this.hianyzasValtozott.emit(this.nev);
   }
 
   kellAtlag():number{
