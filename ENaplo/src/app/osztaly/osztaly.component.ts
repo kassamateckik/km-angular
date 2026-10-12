@@ -24,8 +24,7 @@ export class OsztalyComponent {
     let atlag = 0;
     for (const t of this.tanulok) {
       if (t.jegyek && t.jegyek.length > 0) {
-        const tanuloAtlag = t.jegyek.reduce((sum: number, j: number) => sum + j, 0)
-                            / t.jegyek.length;
+        const tanuloAtlag = t.jegyek.reduce((sum: number, j: number) => sum + j, 0) / t.jegyek.length;
         atlag += tanuloAtlag;
     }
   }

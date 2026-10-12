@@ -1,0 +1,8 @@
+<p>Osztály: {{osztaly.nev}}</p>
+<p>Ofi: {{osztaly.ofi}}</p>
+
+@for (tanulo of osztaly.tanulok; track $index) {
+    <app-tanulo [tanulo]="tanulo"
+                (jegyBeirva)="jegyBeirva(tanulo, $event)"
+                (hianyzasValtozott)="hianyzasValtozott(tanulo)"/>
+}

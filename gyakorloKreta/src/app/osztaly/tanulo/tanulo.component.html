@@ -1,0 +1,20 @@
+<div [class.szurke]="tanulo.hianyzik">
+    Név: {{tanulo.nev}}
+    <input type="number" [(ngModel)]="ujJegy">
+    
+    @if (!tanulo.hianyzik) {
+        <input type="button" value="Jegy mentése" (click)="jegyMentese()">
+    }
+    
+    @if (tanulo.hianyzik) {
+        <p>Igazolatlan</p>
+    }
+
+    Átlag: {{atlag()}}
+    Jegyek: {{tanulo.jegyek}}
+    @if (atlag() > 0 && 2 > atlag()){
+        <p class="piros">Bukásra áll!</p>
+    }
+
+    <input type="button" value="Hiányzás módosítása" (click)="hianyzasValtozasa()">
+</div>
