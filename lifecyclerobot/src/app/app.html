@@ -1,0 +1,7 @@
+<input type="button" [value]="gombfelirat" (click)="gombkattint()">
+
+
+@if (!kapcsolo){
+    <input type="button" value="Etetés" (click)="etet()">
+    <app-robot [etetesekSzama]="etetesSzamlalo"/>
+}

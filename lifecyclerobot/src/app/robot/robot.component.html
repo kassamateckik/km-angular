@@ -1,1 +1,8 @@
-<p>robot works!</p>
+<div [class]="hatterszin()">
+    <p>{{nev | uppercase}}</p>
+    <p>{{etetesekSzama}}</p>
+    <p>{{szuletesiIdo | date:'yyyy.MM.dd. HH:mm:ss'}}</p>
+    <p>{{ar | currency:'HUF':'symbol':'1.0-0'}}</p>
+    <p>{{energiaSzint | number:'1.1-1'}}</p>
+    <div [ngStyle]="{'width': energiaSzint + '%'}" class="energia"></div>
+</div>
