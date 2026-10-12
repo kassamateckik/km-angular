@@ -1,0 +1,9 @@
+@for (gladiator of gladiatorok; track $index) {
+  <app-gladiator [gladiator]="gladiator" [inArena]="false" (katt)="kattintas($event)"/>  
+}
+
+<hr>
+
+@if (kivalasztottak.length == 2) {
+  <app-arena [harcos1]="kivalasztottak[0]" [harcos2]="kivalasztottak[1]"/>
+}
