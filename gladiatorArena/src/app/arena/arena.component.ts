@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { GladiatorComponent } from './gladiator/gladiator.component';
 import { Gladiator, Eredmeny } from './gladiator/gladiator.model';
 
@@ -22,6 +22,10 @@ export class ArenaComponent {
 
   constructor(private ref:ChangeDetectorRef) {}
   
+  gyogyit(gladiator:Gladiator):void {
+    if (gladiator.hp < 100) gladiator.hp++;
+  }
+
   harc():void {
     let elso:number, masodik:number;
     if (this.random(0, 99) < 50) {
@@ -32,10 +36,14 @@ export class ArenaComponent {
       masodik = 0;
     }
 
-    this.h[masodik] = { ...this.h[masodik], hp : this.h[masodik].hp - this.random(0, this.h[elso].tamadas)}
+    let masokikSebzes:number = this.h[masodik].hp - this.random(0, this.h[elso].tamadas);
+    let masodikUjHp:number = masokikSebzes < 0 ? 0 : masokikSebzes;
+    this.h[masodik] = { ...this.h[masodik], hp : masodikUjHp };
     
     if (this.h[masodik].hp > 0){
-      this.h[elso] = { ...this.h[elso], hp : this.h[elso].hp - this.random(0, this.h[masodik].tamadas)}
+      let elsoSebzes:number = this.h[elso].hp - this.random(0, this.h[masodik].tamadas);
+      let elsoUjHp:number = elsoSebzes < 0 ? 0 : elsoSebzes;
+      this.h[elso] = { ...this.h[elso], hp : elsoUjHp }
     }
 
     this.ref.detectChanges();
@@ -64,10 +72,18 @@ export class ArenaComponent {
     let vissza:Eredmeny = {gyoztes : this.gyoztes, vesztes : this.vesztes, tulel};
     this.eredmeny.emit(vissza);
   }
+
+  ngOnChanges(changes:SimpleChanges):void {
+    console.log(changes);
+  }
   
   ngOnInit():void {
     this.interval = setInterval(() => {
       this.harc();
     }, 1000);
+  }
+
+  ngOnDesroy():void {
+    clearInterval(this.interval);
   }
 }

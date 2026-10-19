@@ -3,7 +3,8 @@ export interface Gladiator{
     nev:string, 
     hp:number,
     tamadas:number,
-    maxHp:number
+    maxHp:number,
+    gyozelmek:number
 }
 
 export interface Eredmeny{

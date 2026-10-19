@@ -2,27 +2,35 @@ import { Component } from '@angular/core';
 import { ArenaComponent } from './arena/arena.component';
 import { GladiatorComponent } from './arena/gladiator/gladiator.component';
 import { Eredmeny, Gladiator } from './arena/gladiator/gladiator.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [ArenaComponent, GladiatorComponent],
+  imports: [ArenaComponent, GladiatorComponent, FormsModule],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
 export class App {
   gladiatorok:Gladiator[] = [
-    { id : 1, nev : "Spartacus", hp : 100, tamadas : 25, maxHp : 100 },
-    { id : 2, nev : "Crixus", hp : 120, tamadas : 20, maxHp : 120 },
-    { id : 3, nev : "Gannicus", hp : 90, tamadas : 30, maxHp : 90 },
-    { id : 4, nev : "Maximus", hp : 110, tamadas : 15, maxHp : 110 }
+    { id : 1, nev : "Spartacus", hp : 0, tamadas : 25, maxHp : 100, gyozelmek : 0 },
+    { id : 2, nev : "Crixus", hp : 120, tamadas : 20, maxHp : 120, gyozelmek : 0 },
+    { id : 3, nev : "Gannicus", hp : 90, tamadas : 30, maxHp : 90, gyozelmek : 0 },
+    { id : 4, nev : "Maximus", hp : 110, tamadas : 15, maxHp : 110, gyozelmek : 0 }
   ];
+
+  legtobbGyozelem:number = -1;
 
   kivalasztottak:Gladiator[] = [];
 
-  kattintas(event:any):void {
-    const { inArena, gladiator } = event;
-    if (inArena && gladiator.hp < 100) gladiator.hp++;
-    else if (this.kivalasztottak.length < 2) this.kivalasztottak.push(gladiator);
+  ujId:number = 0;
+  ujNev:string = "";
+  ujMaxHp:number = 0;
+  ujTamadas:number = 0;
+
+  kattintas(gladiator:Gladiator):void {
+    if (this.kivalasztottak.length < 2 && !this.kivalasztottak.some(g => g.id === gladiator.id)) {
+      this.kivalasztottak.push(gladiator);
+    }
   }
 
   kihirdet(eredmeny:Eredmeny){
@@ -31,16 +39,31 @@ export class App {
     const vId:number = this.gladiatorok.findIndex(g => g.id === vesztes!.id)!;
 
     gyoztes!.maxHp += 10;
-    gyoztes!.hp = gyoztes!.maxHp;
+    gyoztes!.gyozelmek++;
 
     this.gladiatorok[gyId] = gyoztes!;
 
-    if (tulel) {
-      vesztes!.hp = vesztes!.maxHp;
-      this.gladiatorok[vId] = vesztes!;
-    } 
+    if (tulel) this.gladiatorok[vId] = vesztes!;
     else this.gladiatorok.splice(this.gladiatorok.findIndex(g => g.id === vesztes!.id), 1);
 
+    this.absolutGyoztesKeres();
+    
     this.kivalasztottak = [];
+  }
+
+  ujGladiator():void {
+    this.gladiatorok.push({ id : this.ujId, nev : this.ujNev, maxHp: this.ujMaxHp, tamadas : this.ujTamadas, hp : this.ujMaxHp, gyozelmek : 0 });
+  }
+
+  absolutGyoztesKeres():void {
+    let gyozelmek:number[] = this.gladiatorok.map(g => g.gyozelmek);
+    let legtobb:number = Math.max(...gyozelmek);
+    this.legtobbGyozelem = legtobb === 0 ? -1 : legtobb;
+
+    console.log(this.legtobbGyozelem);
+  }
+
+  ngOnInit():void {
+    this.absolutGyoztesKeres();
   }
 }

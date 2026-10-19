@@ -1,7 +1,8 @@
-<div [ngClass]="{'cssClass': allapot()}" class="kartya" (click)="kattintas()">
+<div [ngClass]="{'cssClass': allapot()}" class="kartya" [class.arany]="szines" (click)="kattintas()">
     <p>Név: {{gladiator!.nev}}</p>
     <p>HP: {{gladiator!.hp}}</p>
     <p>Támadás: {{gladiator!.tamadas}}</p>
+    <p>Győzelmek: {{gladiator!.gyozelmek}}</p>
 
     @if (gladiator!.hp <= 0 && inArena){
         <input type="button" value="👍" (click)="dont(true)">

@@ -1,5 +1,23 @@
+<h1>Szülőszoba</h1>
+
+ID:
+<input type="number" [(ngModel)]="ujId"><br>
+
+Név:
+<input type="text" [(ngModel)]="ujNev"><br>
+
+MaxHp:
+<input type="number" [(ngModel)]="ujMaxHp"><br>
+
+Támadás:
+<input type="number" [(ngModel)]="ujTamadas"><br>
+
+<input type="button" value="Létrehozás" (click)="ujGladiator()">
+
+<hr>
+
 @for (gladiator of gladiatorok; track $index) {
-  <app-gladiator [gladiator]="gladiator" [inArena]="false" (katt)="kattintas($event)"/>  
+  <app-gladiator [gladiator]="gladiator" [inArena]="false" (katt)="kattintas($event)" [szines]="legtobbGyozelem == gladiator.gyozelmek"/>  
 }
 
 <hr>
