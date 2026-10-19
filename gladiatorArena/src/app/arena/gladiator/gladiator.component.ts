@@ -9,7 +9,7 @@ import { Gladiator } from './gladiator.model';
   templateUrl: './gladiator.component.html',
 })
 export class GladiatorComponent {
-  @Input() gladiator:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0};
+  @Input() gladiator:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0, maxHp : 0};
   @Input() inArena:boolean = false;
 
   @Output() katt:EventEmitter<{ inArena:boolean, gladiator:any }> = new EventEmitter<{ inArena:boolean, gladiator:any }>();

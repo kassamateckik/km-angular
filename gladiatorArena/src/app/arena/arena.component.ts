@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { GladiatorComponent } from './gladiator/gladiator.component';
-import { Gladiator } from './gladiator/gladiator.model';
+import { Gladiator, Eredmeny } from './gladiator/gladiator.model';
 
 @Component({
   imports: [GladiatorComponent],
@@ -13,6 +13,8 @@ export class ArenaComponent {
   // @Input() harcos2:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0};
   
   @Input() h:Gladiator[] = [];
+
+  @Output() eredmeny:EventEmitter<Eredmeny> = new EventEmitter<Eredmeny>();
   
   interval:any; 
   gyoztes:Gladiator|undefined;
@@ -56,6 +58,11 @@ export class ArenaComponent {
   
   random(min:number, max:number):number {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  dontes(tulel:boolean):void{
+    let vissza:Eredmeny = {gyoztes : this.gyoztes, vesztes : this.vesztes, tulel};
+    this.eredmeny.emit(vissza);
   }
   
   ngOnInit():void {

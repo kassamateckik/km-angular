@@ -6,5 +6,5 @@
 
 @if (kivalasztottak.length == 2) {
   <!-- <app-arena [harcos1]="kivalasztottak[0]" [harcos2]="kivalasztottak[1]"/> -->
-  <app-arena [h]="kivalasztottak" />
+  <app-arena [h]="kivalasztottak" (eredmeny)="kihirdet($event)"/>
 }
