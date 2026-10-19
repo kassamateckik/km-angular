@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
+import { Gladiator } from './gladiator.model';
 
 @Component({
   imports: [NgClass],
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/c
   templateUrl: './gladiator.component.html',
 })
 export class GladiatorComponent {
-  @Input() gladiator:{ id:number, nev:string, hp:number, tamadas:number } = { id:0, nev : "", hp : 0, tamadas : 0};
+  @Input() gladiator:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0};
   @Input() inArena:boolean = false;
 
   @Output() katt:EventEmitter<{ inArena:boolean, gladiator:any }> = new EventEmitter<{ inArena:boolean, gladiator:any }>();

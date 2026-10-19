@@ -1,2 +1,6 @@
-<app-gladiator [gladiator]="harcos1" [inArena]="true"/>
-<app-gladiator [gladiator]="harcos2" [inArena]="true"/>
+<!-- <app-gladiator [gladiator]="h[0]" [inArena]="true"/>
+<app-gladiator [gladiator]="h[1]" [inArena]="true"/> -->
+
+@for (g of h; track $index) {
+    <app-gladiator [gladiator]="g" [inArena]="true"/>
+}

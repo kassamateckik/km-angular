@@ -3,7 +3,7 @@
     <p>HP: {{gladiator!.hp}}</p>
     <p>Támadás: {{gladiator!.tamadas}}</p>
 
-    @if (gladiator!.hp == 0 && inArena){
+    @if (gladiator!.hp <= 0 && inArena){
         <input type="button" value="👍" (click)="dont(true)">
         <input type="button" value="👎" (click)="dont(false)">
     }
