@@ -1,0 +1,5 @@
+<ul>
+    @for (item of osszetevok; track $index) {
+        <li appSzemmelVeres appUstbeDobas>{{item.nev | titkosito:item.titkositott}} {{item.varazsero | varaszero}}</li>
+    }
+</ul>
