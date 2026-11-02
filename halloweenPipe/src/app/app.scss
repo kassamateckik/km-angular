@@ -1,0 +1,16 @@
+p {
+    font-size: 24px;
+    &.halloween {
+        padding: 20px;
+        border: 1px dashed rgb(36, 36, 36);
+        border-radius: 20px;
+        font-weight: bold;
+    }
+}
+
+.retteges {
+    color: black;
+    background-color: rgb(255, 68, 0);
+    border: 1px dashed rgb(255, 68, 0);
+    box-shadow: inset 10px 10px 10px #ff7847;
+}
