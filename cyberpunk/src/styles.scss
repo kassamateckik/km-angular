@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+/* Riadó villogás animáció: */
+@keyframes riadoVillogas {
+ 0% { box-shadow: 0 0 5px #ff003c; transform: translateY(0); }
+ 50% { box-shadow: 0 0 20px #ff003c; transform: translateY(-3px); }
+ 100% { box-shadow: 0 0 5px #ff003c; transform: translateY(0); }
+}
+.riado {
+ border-color: #ff003c !important;
+ animation: riadoVillogas 0.4s infinite !important;
+}
+/* Karantén stílus: */
+.karantenban {
+ opacity: 0.5;
+ text-decoration: line-through;
+ border-color: #00f3ff !important;
+ box-shadow: 0 0 12px rgba(0, 243, 255, 0.5);
+}

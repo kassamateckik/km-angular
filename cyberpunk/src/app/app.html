@@ -1,0 +1,7 @@
+@if (karantenban > 0){
+    <p>Fájl karanténba helyezve! Összesen zárolva: {{this.karantenban}} db.</p>
+}
+
+@for (adat of adatcsomagok; track $index) {
+    <app-hacker-terminal [adat]="adat" (karantenbaplusz)="plusz()"/>
+}
