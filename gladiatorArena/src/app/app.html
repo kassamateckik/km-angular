@@ -17,12 +17,12 @@ Támadás:
 <hr>
 
 @for (gladiator of gladiatorok; track $index) {
-  <app-gladiator [gladiator]="gladiator" [inArena]="false" (katt)="kattintas($event)" [szines]="legtobbGyozelem == gladiator.gyozelmek"/>  
+  <app-gladiator [gladiator]="gladiator" [inArena]="false" (katt)="kattintas($event)" [szines]="legtobbGyozelem === gladiator.gyozelmek"/>  
 }
 
 <hr>
 
-@if (kivalasztottak.length == 2) {
+@if (kivalasztottak.length === 2) {
   <!-- <app-arena [harcos1]="kivalasztottak[0]" [harcos2]="kivalasztottak[1]"/> -->
   <app-arena [h]="kivalasztottak" (eredmeny)="kihirdet($event)"/>
 }

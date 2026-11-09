@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, SimpleChanges, OnChanges, OnInit, inject } from '@angular/core';
 import { GladiatorComponent } from './gladiator/gladiator.component';
 import { Gladiator, Eredmeny } from './gladiator/gladiator.model';
 
@@ -8,7 +8,7 @@ import { Gladiator, Eredmeny } from './gladiator/gladiator.model';
   styleUrl: './arena.component.scss',
   templateUrl: './arena.component.html',
 })
-export class ArenaComponent {
+export class ArenaComponent implements OnChanges, OnInit {
   // @Input() harcos1:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0};
   // @Input() harcos2:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0};
   
@@ -16,11 +16,11 @@ export class ArenaComponent {
 
   @Output() eredmeny:EventEmitter<Eredmeny> = new EventEmitter<Eredmeny>();
   
-  interval:any; 
+  interval:NodeJS.Timeout|undefined; 
   gyoztes:Gladiator|undefined;
   vesztes:Gladiator|undefined;
 
-  constructor(private ref:ChangeDetectorRef) {}
+  private readonly ref = inject(ChangeDetectorRef);
   
   gyogyit(gladiator:Gladiator):void {
     if (gladiator.hp < 100) gladiator.hp++;
@@ -36,13 +36,13 @@ export class ArenaComponent {
       masodik = 0;
     }
 
-    let masokikSebzes:number = this.h[masodik].hp - this.random(0, this.h[elso].tamadas);
-    let masodikUjHp:number = masokikSebzes < 0 ? 0 : masokikSebzes;
+    const masokikSebzes:number = this.h[masodik].hp - this.random(0, this.h[elso].tamadas);
+    const masodikUjHp:number = masokikSebzes < 0 ? 0 : masokikSebzes;
     this.h[masodik] = { ...this.h[masodik], hp : masodikUjHp };
     
     if (this.h[masodik].hp > 0){
-      let elsoSebzes:number = this.h[elso].hp - this.random(0, this.h[masodik].tamadas);
-      let elsoUjHp:number = elsoSebzes < 0 ? 0 : elsoSebzes;
+      const elsoSebzes:number = this.h[elso].hp - this.random(0, this.h[masodik].tamadas);
+      const elsoUjHp:number = elsoSebzes < 0 ? 0 : elsoSebzes;
       this.h[elso] = { ...this.h[elso], hp : elsoUjHp }
     }
 
@@ -69,7 +69,7 @@ export class ArenaComponent {
   }
 
   dontes(tulel:boolean):void{
-    let vissza:Eredmeny = {gyoztes : this.gyoztes, vesztes : this.vesztes, tulel};
+    const vissza:Eredmeny = {gyoztes : this.gyoztes, vesztes : this.vesztes, tulel};
     this.eredmeny.emit(vissza);
   }
 

@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output, SimpleChange, ChangeDetectorRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectorRef, OnInit, OnChanges, OnDestroy, inject } from '@angular/core';
 import { Gladiator } from './gladiator.model';
 
 @Component({
@@ -8,15 +8,15 @@ import { Gladiator } from './gladiator.model';
   styleUrl: './gladiator.component.scss',
   templateUrl: './gladiator.component.html',
 })
-export class GladiatorComponent {
+export class GladiatorComponent implements OnInit, OnChanges, OnDestroy {
   @Input() gladiator:Gladiator = { id:0, nev : "", hp : 0, tamadas : 0, maxHp : 0, gyozelmek : 0 };
-  @Input() inArena:boolean = false;
-  @Input() szines:boolean = false;
+  @Input() inArena = false;
+  @Input() szines = false;
 
   @Output() katt:EventEmitter<Gladiator> = new EventEmitter<Gladiator>();
   @Output() tulel:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  interval:any;
+  interval:NodeJS.Timeout|undefined;
 
   allapot():string {
     if (this.inArena) return "arena";
@@ -33,7 +33,9 @@ export class GladiatorComponent {
     this.tulel.emit(dontes);
   }
 
-  constructor(private ref:ChangeDetectorRef) {
+  private readonly ref = inject(ChangeDetectorRef);
+
+  constructor() {
     console.log("Kártya példányosítva!");
   }
 
@@ -42,8 +44,7 @@ export class GladiatorComponent {
     this.inArena = false;
   }
 
-  ngOnChanges(changes:SimpleChange):void{
-    console.log(changes);
+  ngOnChanges():void{
     this.interval = setInterval(() => {
       let hp:number = this.gladiator.hp;
   

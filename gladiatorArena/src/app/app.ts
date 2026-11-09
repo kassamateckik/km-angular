@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArenaComponent } from './arena/arena.component';
 import { GladiatorComponent } from './arena/gladiator/gladiator.component';
 import { Eredmeny, Gladiator } from './arena/gladiator/gladiator.model';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
-export class App {
+export class App implements OnInit {
   gladiatorok:Gladiator[] = [
     { id : 1, nev : "Spartacus", hp : 0, tamadas : 25, maxHp : 100, gyozelmek : 0 },
     { id : 2, nev : "Crixus", hp : 120, tamadas : 20, maxHp : 120, gyozelmek : 0 },
@@ -18,14 +18,14 @@ export class App {
     { id : 4, nev : "Maximus", hp : 110, tamadas : 15, maxHp : 110, gyozelmek : 0 }
   ];
 
-  legtobbGyozelem:number = -1;
+  legtobbGyozelem = -1;
 
   kivalasztottak:Gladiator[] = [];
 
-  ujId:number = 0;
-  ujNev:string = "";
-  ujMaxHp:number = 0;
-  ujTamadas:number = 0;
+  ujId = 0;
+  ujNev = "";
+  ujMaxHp = 0;
+  ujTamadas = 0;
 
   kattintas(gladiator:Gladiator):void {
     if (this.kivalasztottak.length < 2 && !this.kivalasztottak.some(g => g.id === gladiator.id)) {
@@ -56,8 +56,8 @@ export class App {
   }
 
   absolutGyoztesKeres():void {
-    let gyozelmek:number[] = this.gladiatorok.map(g => g.gyozelmek);
-    let legtobb:number = Math.max(...gyozelmek);
+    const gyozelmek:number[] = this.gladiatorok.map(g => g.gyozelmek);
+    const legtobb:number = Math.max(...gyozelmek);
     this.legtobbGyozelem = legtobb === 0 ? -1 : legtobb;
 
     console.log(this.legtobbGyozelem);
