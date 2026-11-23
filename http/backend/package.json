@@ -1,0 +1,18 @@
+{
+  "name": "http-backend",
+  "version": "1.0.0",
+  "description": "Express + Sequelize + MySQL CRUD backend",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mysql2": "^3.12.0",
+    "sequelize": "^6.37.7"
+  }
+}
