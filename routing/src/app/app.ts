@@ -9,5 +9,5 @@ import { NavComponent } from './nav/nav.component';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('routing');
+  protected readonly title = signal('routing2');
 }

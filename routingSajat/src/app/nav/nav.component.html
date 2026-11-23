@@ -1,0 +1,9 @@
+<input type="button" value="Haza" routerLink="">
+<input type="button" value="Bemutatkozás" routerLink="/bemutatkozas">
+<input type="button" value="Kapcsolat" routerLink="/kapcsolat">
+@if(authService.isLogin()){
+    <input type="button" value="Bejelentkezve" routerLink="/bejelentkezve">
+    <input type="button" value="Kijelentkezes" routerLink="/haza">
+} @else {
+    <input type="button" value="Bejelentkezes" routerLink="/bejelentkezes">
+}

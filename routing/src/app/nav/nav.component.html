@@ -1,9 +1,17 @@
-<input type="button" value="Haza" routerLink="">
-<input type="button" value="Bemutatkozás" routerLink="/bemutatkozas">
-<input type="button" value="Kapcsolat" routerLink="/kapcsolat">
-@if(authService.isLogin()){
-    <input type="button" value="Bejelentkezve" routerLink="/bejelentkezve">
-    <input type="button" value="Kijelentkezes" routerLink="/haza">
+<input type="button" value="haza"
+    routerLink="/">
+<input type="button" value="Bemutatkozás"
+    routerLink="/bemutatkozas">
+<input type="button" value="Kapcsolat"
+    routerLink="/kapcsolat">
+@if (authService.isLogin()) {
+    <input type="button" value="Kijelentkezés"
+        routerLink="/haza" (click)="kijelentkezes()">
+    <input type="button" value="bejelentkezve"
+        routerLink="/bejelentkezve">
+    <input type="button" value="részletek"
+        routerLink="/bejelentkezve/456">
 } @else {
-    <input type="button" value="Bejelentkezes" routerLink="/bejelentkezes">
+    <input type="button" value="Bejelentkezés"
+        routerLink="/bejelentkezes">
 }

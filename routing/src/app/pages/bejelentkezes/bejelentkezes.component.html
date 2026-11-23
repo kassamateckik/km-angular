@@ -1,0 +1,16 @@
+<form (ngSubmit)="bejelentkezes()">
+    <label for="fnev">Felhasználónév: </label>
+    <input type="text" name="fnev" id="fnev" 
+        placeholder="Felhasználónév" 
+        [(ngModel)]="fnev">
+    <br>
+    <label for="pw">Jelszó:</label>
+    <input type="password" name="pw" id="pw" 
+        placeholder="Jelszó"  
+        [(ngModel)]="pw">
+    <br>
+
+    <button type="submit">
+        Login
+    </button>
+</form>

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Authentikacio } from '../services/authentikacio';
+import { Autentikacio } from '../services/autentikacio';
 
 @Component({
   imports: [RouterLink],
@@ -9,5 +9,10 @@ import { Authentikacio } from '../services/authentikacio';
   templateUrl: './nav.component.html',
 })
 export class NavComponent {
-  private readonly authService = inject(Authentikacio);
+  private readonly authService=inject(Autentikacio);
+  
+  kijelentkezes() {
+    this.authService.logout();
+  }
+
 }
