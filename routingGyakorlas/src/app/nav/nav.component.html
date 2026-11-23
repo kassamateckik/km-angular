@@ -1,7 +1,7 @@
 <button routerLink="/">Kezdőlap</button>
 
 @if (authService.isLoggedIn()){
-    <button routerLink="/">Kijelentkezés</button>
+    <button routerLink="/" (click)="logout()">Kijelentkezés</button>
     <button routerLink="/admin/details">Részletek</button>
     <button routerLink="/admin/profile">Profil</button>
 }

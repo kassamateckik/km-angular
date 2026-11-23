@@ -13,13 +13,13 @@ export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
-  name = "amdin";
-  password = "amdin";
+  name = "admin";
+  password = "admin";
 
   login() {
     this.authService.login(this.name, this.password);
     if (this.authService.isLoggedIn()){
-      this.router.navigate(["admin/loggedIn"]);
+      this.router.navigate(["admin/profile"]);
     }
   };
 }

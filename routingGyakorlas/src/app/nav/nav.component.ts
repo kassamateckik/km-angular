@@ -10,4 +10,8 @@ import { RouterLink } from '@angular/router';
 })
 export class NavComponent {
   private readonly authService = inject(AuthService);
+
+  logout() {
+    this.authService.logout();
+  }
 }

@@ -19,6 +19,7 @@ export class AuthService {
     }
 
     logout() {
-        // this.route.navigate([""]);
+        localStorage.setItem("isLoggedIn", "false");
+        this.isLoggedIn.set(false);
     }
 }

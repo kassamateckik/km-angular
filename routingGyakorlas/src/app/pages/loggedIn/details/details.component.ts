@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './details.component.scss',
   templateUrl: './details.component.html',
 })
-export class DetailsComponent {}
+export class DetailsComponent {
+  @Input() id?:number;
+}
