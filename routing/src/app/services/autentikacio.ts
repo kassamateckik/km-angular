@@ -4,8 +4,7 @@ import { Injectable, Service, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class Autentikacio {
-    isLogin=signal<boolean>(
-        localStorage.getItem('id')==="true");
+    isLogin=signal<boolean>(localStorage.getItem('id')==="true");
 
     constructor() {
         if (localStorage.getItem("isLogin") !== null) {

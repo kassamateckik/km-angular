@@ -1,0 +1,11 @@
+<p>Bejelentkezés</p>
+
+<form (ngSubmit)="login()">
+    <label for="name">Név:</label>
+    <input type="text" name="name" id="name" value="admin" [(ngModel)]="name">
+    <br>
+    <label for="password">Jelszó:</label>
+    <input type="password" name="password" id="password" value="admin" [(ngModel)]="password">
+    <br>
+    <button type="submit">Bejelentkezés</button>
+</form>
