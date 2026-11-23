@@ -8,6 +8,7 @@
       <th>ID</th>
       <th>Név</th>
       <th>Születési dátum</th>
+      <th>Osztály</th>
       <th>Műveletek</th>
     </tr>
   </thead>
@@ -31,12 +32,20 @@
             />
           </td>
           <td>
+            <input
+              type="text"
+              [(ngModel)]="editGrade"
+              (keydown.enter)="saveEdit(person.id)"
+            />
+          </td>
+          <td>
             <button type="button" (click)="saveEdit(person.id)">Mentés</button>
             <button type="button" (click)="cancelEdit()">Mégse</button>
           </td>
         } @else {
           <td>{{ person.name }}</td>
           <td>{{ person.birthDate }}</td>
+          <td>{{ person.grade }}</td>
           <td>
             <button type="button" (click)="startEdit(person)">Módosítás</button>
             <button type="button" (click)="deletePerson(person.id)">Törlés</button>
@@ -58,6 +67,13 @@
         <input
           type="date"
           [(ngModel)]="newBirthDate"
+          (keydown.enter)="addPerson()"
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          [(ngModel)]="newGrade"
           (keydown.enter)="addPerson()"
         />
       </td>

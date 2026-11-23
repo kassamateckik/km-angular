@@ -35,14 +35,15 @@ router.post('/', async (req, res, next) => {
   try {
     const name = typeof req.body?.name === 'string' ? req.body.name.trim() : '';
     const birthDate = req.body?.birthDate;
+    const grade = req.body?.grade;
 
-    if (!name || !isValidDateString(birthDate)) {
+    if (!name || !isValidDateString(birthDate) || !grade) {
       return res.status(400).json({
         message: 'Érvényes név és születési dátum (YYYY-MM-DD) megadása kötelező.',
       });
     }
 
-    const created = await Person.create({ name, birthDate });
+    const created = await Person.create({ name, birthDate, grade });
     res.status(201).json(created);
   } catch (err) {
     next(err);
@@ -59,14 +60,15 @@ router.put('/:id', async (req, res, next) => {
 
     const name = typeof req.body?.name === 'string' ? req.body.name.trim() : '';
     const birthDate = req.body?.birthDate;
+    const grade = req.body?.grade;
 
-    if (!name || !isValidDateString(birthDate)) {
+    if (!name || !isValidDateString(birthDate) || !grade) {
       return res.status(400).json({
         message: 'Érvényes név és születési dátum (YYYY-MM-DD) megadása kötelező.',
       });
     }
 
-    await person.update({ name, birthDate });
+    await person.update({ name, birthDate, grade });
     res.json(person);
   } catch (err) {
     next(err);

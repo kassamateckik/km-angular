@@ -21,6 +21,13 @@ export const Person = sequelize.define(
       allowNull: false,
       field: 'birth_date',
     },
+    grade : {
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notEmpty : true
+      }
+    }
   },
   {
     tableName: 'people',

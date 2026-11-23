@@ -18,9 +18,11 @@ export class App implements OnInit {
   protected readonly editingId = signal<number | null>(null);
   protected readonly editName = signal('');
   protected readonly editBirthDate = signal('');
+  protected readonly editGrade = signal('');
 
   protected readonly newName = signal('');
   protected readonly newBirthDate = signal('');
+  protected readonly newGrade = signal('');
 
   ngOnInit(): void {
     this.loadPeople();
@@ -39,25 +41,28 @@ export class App implements OnInit {
     this.editingId.set(person.id);
     this.editName.set(person.name);
     this.editBirthDate.set(person.birthDate);
+    this.editGrade.set(person.grade);
   }
 
   protected cancelEdit(): void {
     this.editingId.set(null);
     this.editName.set('');
     this.editBirthDate.set('');
+    this.editGrade.set('');
   }
 
   protected saveEdit(id: number): void {
     const name = this.editName().trim();
     const birthDate = this.editBirthDate();
+    const grade = this.editGrade();
 
-    if (!name || !birthDate) {
+    if (!name || !birthDate || !grade) {
       this.errorMessage.set('A név és a születési dátum megadása kötelező.');
       return;
     }
 
     this.errorMessage.set(null);
-    this.personService.update(id, { name, birthDate }).subscribe({
+    this.personService.update(id, { name, birthDate, grade }).subscribe({
       next: (updated) => {
         this.people.update((list) => list.map((item) => (item.id === id ? updated : item)));
         this.cancelEdit();
@@ -82,14 +87,15 @@ export class App implements OnInit {
   protected addPerson(): void {
     const name = this.newName().trim();
     const birthDate = this.newBirthDate();
+    const grade = this.newGrade();
 
-    if (!name || !birthDate) {
+    if (!name || !birthDate || !grade) {
       this.errorMessage.set('A név és a születési dátum megadása kötelező.');
       return;
     }
 
     this.errorMessage.set(null);
-    this.personService.create({ name, birthDate }).subscribe({
+    this.personService.create({ name, birthDate, grade }).subscribe({
       next: (created) => {
         this.people.update((list) => [...list, created]);
         this.newName.set('');
